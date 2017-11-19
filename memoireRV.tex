@@ -1,0 +1,1647 @@
+%% Code source du rapport de 3e année
+%% Copyright (C) 2016  Ludovic Hondet
+
+%% This program is free software: you can redistribute it and/or modify
+%% it under the terms of the GNU General Public License as published by
+%% the Free Software Foundation, either version 3 of the License, or
+%% (at your option) any later version.
+
+%% This program is distributed in the hope that it will be useful,
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%% GNU General Public License for more details.
+				  
+%% You should have received a copy of the GNU General Public License
+%% along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+\documentclass[12pt]{report}
+\usepackage{fontspec,polyglossia}
+\usepackage{calc,layouts}
+\usepackage[inner=25mm,hmarginratio=2:3,textheight=678pt,twoside,a4paper,
+  marginparwidth=80pt,headheight=15pt]{geometry}
+\usepackage{array,tabulary,multirow,graphicx}
+\usepackage[autostyle=once]{csquotes}
+\usepackage{titlesec}
+\usepackage{paralist}
+\usepackage{amsmath,eurosym}
+\usepackage{floatrow,rotating}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{makeidx}
+\usepackage[backend=bibtex8,natbib=true,style=authoryear]{biblatex}
+\usepackage[verbose,hyperindex=false]{hyperref}
+\usepackage[xindy,acronym,nomain,nohypertypes={acronym}]{glossaries}
+
+
+\hypersetup{colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  pdfpagemode=UseOutlines,
+  pdfinfo={
+    Title={Mémoire de fin d'études},
+    Author={Ludovic Hondet},
+    Keywords={bois-énergie, mobilisation, transition énergétique, politique publique, propriétaires forestiers}
+  }
+}
+
+\titleformat{\chapter}[hang]{\bfseries\LARGE\sffamily}{\thechapter}{.5em}{}
+\floatsetup[table]{footposition=bottom,capposition=top}
+\floatsetup[sidewaystable]{capposition=top}
+\setdefaultlanguage{french}
+\setotherlanguage{english}
+\graphicspath{{images/}}
+\setmainfont[Ligatures=TeX]{Latin Modern Roman}
+\providecommand{\keywords}[1]{\textbf{Mots clefs~:}#1}
+\providecommand{\enKeywords}[1]{\textbf{Keywords:}#1}
+
+\bibliography{biblio}
+\defbibheading{bibliog}{
+  \chapter*{Bibliographie}
+  \markboth{#1}{#1}
+  \addcontentsline{toc}{chapter}{\protect\numberline{}Bibliographie}
+}
+
+\newcounter{table1}
+\newcommand\indexp[1]{#1\index{#1}}
+\makeindex
+\makeglossaries
+\input{glossaireEtAbbrv}
+
+
+\fancyhf{}
+\fancyhead[LO,RE]{\thepage}
+\fancyhead[RO,LE]{\nouppercase{\leftmark}}
+
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyhead[LO,RE]{\thepage}
+  \renewcommand\headrulewidth{0pt}
+}
+
+\title{Quand la transition énergétique redéfinit\\
+la gestion forestière\\
+{\normalsize Enquête exploratoire
+sur un programme de mobilisation des bois en Gironde}}
+\author{Ludovic Hondet}
+\date{\today}
+
+\begin{document}
+
+
+\newgeometry{top=20mm,bottom=20mm,left=25mm,right=25mm}
+\begin{titlepage}    
+    \centering
+    {\normalsize Ministère de l'Agriculture, de l'Agroalimentaire et de la Forêt \par}
+    \vspace{20.736pt}
+    {{\LARGE École Nationale Supérieure des Sciences
+    Agronomiques de Bordeaux Aquitaine}\\
+    {\normalsize 1 cours du Général de Gaulle - CS 40201 - 33175 Gradignan CEDEX \par}}
+    \vspace{20.736pt}
+    {{\LARGE Mémoire de fin d'études}\\
+    {\normalsize pour l'obtention du titre}\\
+    {\LARGE Ingénieur de Bordeaux Sciences Agro} \par}
+    \vspace{72.576pt}
+    {{\LARGE \textbf{Quand la transition énergétique redéfinit\\
+    la gestion forestière}} \par}
+    \vspace{7.2pt}
+    {{\Large Enquête exploratoire\\
+    sur un programme de mobilisation des bois en Gironde} \par}
+    \vspace{20.736pt}
+    {{\normalsize When the energy transition redefines forestry management}\\
+    {\normalsize Exploratory enquiry about a wood mobilisation programme in Gironde} \par}
+
+    \vfill
+
+    {\large \textit{Hondet, Ludovic} \par}
+    \begin{flushleft}
+      {\large Spécialisation: Foresterie\\
+      Étude réalisé à: Institut national de Recherche en Sciences et Technologies pour l'Environnement et l'Agriculture\\
+      50 avenue de Verdun Gazinet -- 33612 Cestas CEDEX \par}
+    \end{flushleft}
+    
+    \vspace{1mm}
+    
+    {\includegraphics[width=20mm]{logo_irstea.jpg} \hfill \LARGE{- 2017 -} \hfill \includegraphics[width=20mm]{logo_BxScAgro.png}}
+\end{titlepage}
+
+\pagenumbering{gobble}
+\newpage
+\thispagestyle{empty}
+~
+\newpage
+
+\restoregeometry
+\maketitle
+
+\newpage
+\thispagestyle{empty}
+~
+\newpage
+
+%\newpage
+%\thispagestyle{empty}
+%\setcounter{page}{0}
+%\noindent Le fichier source de ce document est disponibles sur GitHub à l'adresse:\\
+%\verb?https://github.com/LudovicHDT/FIRe_LaTeX?\\
+%\noindent Les codes sources des scripts écrits pour ce rapport sont disponible à l'adresse:\\
+%\verb?https://github.com/LudovicHDT/A7R?\\
+%Si vous désirez des documents ou figures dont il est fait mention dans le rapport mais qui
+%ne sont pas en annexes, vous pouvez vous adresser à l'auteur:\\
+%\verb?ludohon@gmail.com?
+
+%{\footnotesize
+%\begin{verbatim}
+
+%Copyright (C) 2017  Ludovic Hondet
+
+%This document is free document: you can redistribute it and/or modify
+%it under the terms of the GNU General Public License as published by
+%the Free Software Foundation, either version 3 of the License, or
+%(at your option) any later version.
+
+%This document is distributed in the hope that it will be useful,
+%but WITHOUT ANY WARRANTY; without even the implied warranty of
+%MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%GNU General Public License for more details.
+
+%You should have received a copy of the GNU General Public License
+%along with this program.  If not, see <http://www.gnu.org/licenses/>.
+%\end{verbatim}
+%}
+%\newpage
+
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+
+\tableofcontents
+\listoffigures
+\addcontentsline{toc}{chapter}{\protect\numberline{}Table des figures}
+\listoftables
+\addcontentsline{toc}{chapter}{\protect\numberline{}Liste des tableaux}
+\printacronyms[title={Liste des abréviations},nonumberlist]
+\addcontentsline{toc}{chapter}{\protect\numberline{}Liste des abréviations}
+
+
+\chapter*{Préface - remerciements}
+\addcontentsline{toc}{chapter}{\protect\numberline{}Préface - remerciements}
+
+Trois ans ont passé depuis mon entrée en école d'ingénieur. Mon projet
+professionnel à donc eu le temps mûrir. Je suis rentré à Bordeaux Sciences Agro
+dans l'esprit de travailler plus tard dans le monde de la forêt. Les cours que
+nous avons suivi ne ferons pas de nous des sylviculteurs experts du chêne~; à
+la place, ils nous apprennent à analyser et comprendre les tenants et
+aboutissants d'une filière, qu'une filière est lié à son environnent. Elle
+dépend donc de l'économie, de la finance et des technologies qui l'entourent. À
+ce titre, j'ai perçu la forêt comme un objet d'étude, comme une ressource à
+laquelle on peut appliquer des méthodes pour mieux la gérer, la ressource et
+toute la filière qui en découle. Plutôt que de me spécialiser dans la technique
+au travers du stage, j'ai donc opté pour une poursuite d'études qui m'apportera
+les connaissances nécessaires à la meilleure gestion d'une ressource dans son
+environnement socio-économique.
+
+C'est donc en toute logique que j'ai accepté un stage qui allie forêt et
+politique publique~; stage qui assure une continuité entre formation d'ingénieur
+agronome en spécialité foresterie et un mastère spécialisé Politique Publiques
+et Stratégies pour l'Environnement à AgroParisTech\\
+
+Je souhaite rappeler que, en tant que porteur du projet FOREDAVENIR, le CRPF a
+accepté nous laisser accéder aux informations qui nous ont permis de contacter les
+propriétaires. C'est donc grâce à ses agents que mon stage a pu se dérouler dans de
+bonnes conditions. Je remercie donc Henri Husson, directeur adjoint du CRPF
+d'Aquitaine~; Jérémy Abgrall, coordinateur du projet FOREDAVENIR et Dimitri
+Blanchard, technicien CRPF. Je remercie également mon maître de stage, Vincent
+Banos, pour ces relectures attentives et Philippe Deuffic pour ses précieux
+conseils et sa réflexion sur la typologie.
+
+Enfin, je remercie toutes les personnes interrogées~: les opérateurs et les
+services de l'État qui ont toujours accepté de répondre à toutes les questions,
+même les plus provocatrices, ainsi
+que les propriétaires qui ont, bien souvent, accepté de sacrifier un peu de
+temps libre pour participer aux entretiens. 
+
+\newpage
+\thispagestyle{empty}
+~
+\newpage
+
+\chapter{Introduction}
+\pagenumbering{arabic}
+
+Le 12 décembre 2015, l'Accord de Paris sur le climat est signé par 194 pays et
+l'Union Européenne. L'ambition affichée est de contenir le réchauffement
+climatique en dessous des 2$^{\circ}$C. Pour atteindre cet objectif, les partenaires signataires
+se sont engagées à accentuer la transformation des modes de production et de
+consommation d'énergie. Ils donc incitent les acteurs de l'énergie, les particuliers
+et les entreprises à passer d'un modèle basé sur les énergies fossiles à un
+modèle décarboné. C'est ce qui s'appelle la transition énergétique
+\citep{kern2008_ref112,rojey2008_ref118}. En France, la transition
+énergétique se matérialise par l'adoption d'une loi \textquote{transition
+énergétique pour la croissance verte}. Celle-ci prévoit de porter la part des
+énergies renouvelables à 23\% de la consommation d'énergie brute d'ici 2020. Les
+usages énergétiques du bois s'inscrivent dans une longue histoire, les
+technologies du~\gls{be} peuvent apparaître mieux maîtrisés que les
+technologies solaires et éoliennes~\citep{bontoux2009_ref119}. Or, la ressource forestière est
+décrite comme abondante~\citep{ifn2005_ref120}. De plus, sa valorisation énergétique est
+propice au développement local grâce à la proximité des approvisionnements
+\citep{poinsot2012_ref122,tritz2012_ref123}. Le BE s'est donc imposé comme un
+moteur incontournable de cette trajectoire de
+diversification du mix énergétique~\citep{ademeMixEn_ref108}. En effet, le BE
+constitue la première source d'énergie renouvelable, loin devant l'hydraulique
+(44\% contre 26\%). En conséquence, il est prévu que la biomasse contribue pour
+moitié aux objectifs de 23\% d'énergie renouvelable d'ici 2020.\\
+
+L'usage du bois comme moyen pour atteindre les objectifs de la transition
+énergétique ne doit cependant pas éluder des caractéristique de la forêt et de
+ses filières. D'une part, les ressources forestières sont parfois difficilement
+accessibles (zones de montagne, propriété morcelée, etc.)~; d'autre part, la
+matière première mobilisée pour le BE est déjà utilisée par la filière~\gls{bi}.
+Dans certaines zones comme dans les Landes de Gascogne, cette concurrence d'usages
+a pu devenir critique suite aux tempêtes. L'utilisation de la ressource
+locale en tant que BE a donc suscité une levée de boucliers~\citep{alexandre2012_ref124,ecofor2010_ref125}. Ces écueils
+traduisent des différences de préoccupations et de culture entre les mondes de
+l'énergie et de la forêt. Ils expliquent, en partie, pourquoi plus de 30 ans
+après l'installation des premières chaufferies BE, on observe des difficultés
+persistantes au niveau de la filière BE~\citep{tabourdeau2014_ref117,BEbanosDehez_ref78}.
+Toutefois, des signaux expriment une appropriation des enjeux de transition
+énergétique et une transformation de la menace du \gls{be} en opportunité de
+développement par la filière forêt-bois \citep{sergent2014_ref110}.
+Dans le cadre du~\gls{pnfb}\index{PNFB}~\citep{pnfb_ref98}, l'État s'est engagé
+à dynamiser la gestion forestière et à augmenter les prélèvements de 12 millions de
+m$^{3}$ de bois supplémentaire d'ici 2026 afin, entre autre, de contribuer à la
+transition bas carbone. Par ailleurs,~\gls{ademe}\index{ADEME}, acteur historique
+du développement des énergies renouvelables dont le BE, a lancé en 2015 les
+\glspl{ami}\index{AMI}. Ceux-ci ont pour
+but de faire émerger des projets collaboratifs favorisant la mobilisation de
+bois additionnels pour les chaufferies biomasse du Fonds Chaleur. FOREDAVENIR
+est le projet retenu en Gironde suite à ces \glspl{ami}.\\
+
+\indexp{FOREDAVENIR} est un programme porté par le~\gls{crpf}\index{CRPF}
+d'Aquitaine. Ce programme, financé par le Fond Chaleur de l'ADEME, a pour
+objectif de remettre en production 1395ha de \textquote[\citealp{instructionTech_ref109}]
+{taillis, de~\gls{tsf} ou d'accrus}. Le CRPF a prévu d'atteindre cet objectif en incitant
+les propriétaires à nettoyer leurs bois grâce à des subventions sur les travaux
+de reboisement, de balivage, de cloisonnement ou de régénération naturelle. Le
+CRPF envisage ainsi de mobiliser 167 670t de bois, dont 110 000t à destination
+des chaufferies de Bordeaux métropole. Les forêts de l'Est-Gironde
+ont la particularité d'être constituées en majorité de petites propriétés,
+la surface moyenne par propriété est de 1.197ha~\citep{diagForedavenir_ref71}.
+De plus, le CRPF d'Aquitaine est confronté à des
+propriétaires qui ont une faible activité sylvicole et qui connaissent
+très mal leurs bois. Le CRPF d'Aquitaine est donc face à des propriétaires,
+dans l'ensemble, inactifs.\\
+
+Pour mobiliser des propriétaires inactifs, les porteurs de politiques publiques
+ont plusieurs outils à leur disposition. Pour adapter le programme et ainsi
+faciliter son implémentation, les porteurs peuvent entreprendre une enquête de
+terrain~\citep{IRSTEA_ref61}. L'enquête permet de récolter de l'information pour
+mieux appréhender les logiques d'actions et les motivations des propriétaires.
+L'organisation de l'information recueilli sous forme de typologie est efficace
+pour s'assurer que le programme proposé concorde avec les attentes de la
+population qui en bénéficiera~\citep{boon2004_ref101,majumdar2008_ref103}.
+Les typologies de propriétaires sont construites selon l'information que l'on
+veut obtenir, il est ainsi possible de faire des typologies de comportement, de
+motivations ou d'action raisonnée~\citep{dayer2014_ref95}. Elles n'ont pas les
+rôles et ne remplissent pas les mêmes objectifs. Les typologies de comportement
+ou d'action raisonnée classent les propriétaires sur la base d'éléments factuels
+tel que l'existence de plans de gestion~\citep{young2015_ref104,ross-davis2007_ref94}
+ou les pratiquent sylvicoles~\citep{bohlin2002_ref96,selter2009_ref93,novais2010_ref92}.
+Ces typologies permettent de contextualiser les actions des propriétaires. Cette
+contextualisation, en faisant décrire au propriétaire ses pratiques et son but,
+permet de faire émerger les raisons qui justifient ses actions. La construction
+de telles typologies s'appliquent bien aux propriétaires forestiers. Certains
+tiennent compte des enjeux environnementaux et de biodiversité. Ils adaptent
+leurs pratiques en fonction de ces enjeux~\citep{häyrinen2014_ref102}. Les typologies de motivation
+classent les propriétaires en tenant compte de leurs sources d'information~\citep{ross-davis2007_ref94},
+de leurs loisirs~\citep{ross-davis2007_ref94,tian2015_ref105} ou des aides
+financières\footnote{Aides de l’État ou défiscalisation}~\citep{tian2015_ref105,
+halder2016_ref106}. A titre d'exemple, ces typologies permettent, lorsque l'on souhaite monter un
+programme de mobilisation des bois ou de dynamisation de la sylviculture, de
+savoir quels sont les moyens d'informations privilégiés des propriétaires
+forestiers~\citep{foretEntreprise233_ref107}. Dans une seconde étape, la
+connaissance des moyens d'informations permettra d'implémenter le programme plus
+aisément.\\
+
+On sait donc comment préparer l'implémentation d'une politique publique incitative.
+La construction d'une typologie de comportement permet de comprendre les
+logiques d'action des individus du groupe étudié. La construction d'une
+typologie de motivations, permet d'estimer, à priori, quelles actions ou aides
+vont inciter les individus à adhérer au programme. Cependant, aucune typologie
+ne rend compte de l'évolution du comportement des individus face au programme.
+En effet, elles utilisent des critères binaires comme adhérer à un plan de
+gestion ou non, chasser ou non, etc.. De plus, mon stage se déroule après
+le lancement du programme mais sans qu'il soit pour autant terminé. L'un des
+intérêts du stage est donc de rendre compte
+des impacts potentiels de FOREDAVENIR sur les propriétaires. Pour cela, je vais
+donc construire une typologie dynamique qui utilise des critères graduels et
+continus plutôt que des critères binaires.\\
+
+Certes le programme, et donc par extension mon stage, place les propriétaires au
+centre du dispositif mais ces derniers s'insèrent dans un environnement et
+interagissent avec des acteurs de la filière forêt-bois. De plus, ce programme
+a la particularité de s'appuyer sur plus de 10 partenaires, dont des partenaires
+extérieurs au monde de la forêt. Donc, en tant que programme pas purement
+forestier puisqu'il implique des forestiers et des énergéticiens, on peut se
+demander si FOREDAVENIR va entraîner une évolution de l'ingénierie forestière.
+On voit donc apparaître une double problématique qui peut se formuler comme
+suit: Au delà des objectifs quantitatifs affichés, comment FOREDAVENIR va-t-il
+modifier les pratiques et les cadres de la gestion forestière en Est-Gironde?\\
+
+Pour répondre à cette problématique, nous avons choisi, avec mon maître de stage,
+d'appréhender la gestion forestière à 2 échelles. Nous avons lors d'une première
+phase, mené des enquêtes auprès des propriétaires afin de comprendre comment ces
+derniers s'approprient FOREDAVENIR à l'échelle micro et, à l'échelle méso, auprès
+des opérateurs afin de recontextualiser l'action des propriétaires tout en
+identifiant les traces d'une possible évolution de l'ingénierie forestière.
+Dans un premier temps, je présenterais donc le dispositif méthodologique. Je
+présenterais ensuite les résultats de l'enquête, de l'échelle micro à l'échelle
+méso avant de conclure en discutant des résultats et en montrant les perspectives.
+
+%j'ai, dans une première phase et avec mon
+%maître de stage, mené une
+%série d'enquêtes parmi les propriétaires forestiers et les acteurs de la filière.
+%Grâce aux données recueillis auprès des propriétaires, j'ai pu construire une
+%typologie dynamique qui utilise des discriminants graduels et continus. En parallèles, j'ai
+%retranscrit, en plus des discours des propriétaires, les récits des acteurs de
+%la filière. J'ai ainsi pu faire émerger, grâce à une analyse transversale, les
+%enjeux qui font débat chez l'ensemble des opérateurs de FOREDAVENIR.
+%Pour conclure, j'ai mis les résultasts en perspective avec d'autres travaux de
+%recherche tout en montrant les limites et perspectives aux travaux présentés.
+
+
+\chapter{Matériel et méthodes}\label{sec:M&M}
+
+\section{Préparation des enquêtes}
+
+\subsection{Choix et définition du territoire d'enquête}
+
+L'offre de stage proposait une étude sur l'ensemble des territoires de
+\indexp{FOREDAVENIR}: Haute Gironde, Libournais, \gls{siphem}\index{SIPHEM} et Bazadais (voir annexe~\ref{App:appxA}).
+Parmi ces quatre territoires, le Bazadais a la particularité d'être intégré,
+géographiquement et en terme d'organisation, dans le massif Landais. Ce dernier
+a fait l’objet de plusieurs travaux de recherche récents
+\citep{BEbanosDehez_ref78,brahic2017_ref114,dehez2017_ref115}, nous avons donc
+choisi de ne pas le retenir et de centrer l'étude sur le SIPHEM, le
+Libournais et la Haute-Gironde. Ces 3 territoires ont en commun une forte
+présence de feuillus, l'industrie du bois en est quasiment absente. Au
+delà de ces caractéristiques qui sont des marqueurs forts
+du projet FOREDAVENIR, le travail de
+prospection nous a également permis de constater des éléments
+distinctifs. Le SIPHEM est, par exemple, un \gls{tepos}\index{TEPOS} sur lequel des petites chaufferies sont présentes
+\citep{BEbanosDehez_ref78} alors que ces équipements sont absents des
+territoires du Libournais et de la Haute-Gironde. Il semblait donc intéressant
+d'étudier les effets des dynamiques locales sur l'implémentation du
+programme FOREDAVENIR au travers de ce contraste territorial. La présence d'une
+opposition entre homogénéité sylvicole et hétérogénéité des dynamiques locales
+offrait un cadre intéressant pour mener l'enquête.
+
+\subsection{Choix de la méthode d'enquête}
+
+Dans le cadre du projet de recherche \indexp{TREFFOR} (TRansition Énergétique et mutations
+de la Filière FOrêt-bois en Région Aquitaine), l'IRSTEA prévoit de mettre en œuvre
+une enquête quantitative. Cette enquête a pour but de mesurer l’appétence individuelle des
+propriétaires forestiers pour le~\gls{be} et d’analyser les pratiques de
+gestion développées dans le cadre de la transition énergétique. Ce questionnaire
+sera réalisé en partenariat avec le CRPF. Il pourra aider les porteurs de
+FOREDAVENIR à évaluer les effets de leur programme expérimental et donner des
+indications permettant de faciliter l’implémentation de futurs
+programmes. Pour connaître les éléments pertinents à intégrer dans
+cette enquête quantitative, il est nécessaire d’identifier les pratiques de
+gestion forestière développées par la population cible, ses comportements
+vis-vis du \gls{be} et  les facteurs individuels et collectifs qui
+favorisent ou, au contraire, freinent l’appropriation d’un programme
+expérimental tel que FOREDAVENIR. L'\indexp{enquête qualitative}
+permet cela~\citep{IRSTEA_ref69} puisqu’elle vise justement à explorer et à
+comprendre les logiques d’action, c'est-à-dire la manière dont les acteurs
+agissent et interagissent. Cette première phase permet d'entériner les
+hypothèses préliminaires et d'en faire émerger de nouvelles qui pourront être
+intégrées dans l'enquête quantitative.
+
+Une enquête qualitative est constituée d'entretiens qui peuvent être conduit
+selon 3 modalités: entretien libre, semi-directif ou directif. Dans chacun de
+mes entretiens, j'ai abordé plusieurs thèmes sur lesquelles nous avions
+des connaissances. Pour chacun de ces thèmes, nous voulions laisser de la
+liberté à la personne interrogée afin de faire émerger, si ils existaient, de
+nouveaux enjeux. D'après~\citet{IRSTEA_ref69}, l'\indexp{entretien semi-directif}
+était la modalité d'enquête la plus adaptée aux objectifs du stage.
+
+\subsection{Choix et définition des enquêtés}
+
+\subsubsection{Définition des enquêtés}
+
+Initialement nous avions prévu d'enquêter parmi l'ensemble des propriétaires
+forestiers du terrain d'enquête. Cet échantillonnage nous aurait permis
+d'identifier les points de blocage qui empêchaient certains propriétaires de
+participer à ce programme expérimental. Cependant, nous risquions d'être
+confronté à des entretiens pauvres en informations. Il aurait été difficile de
+faire parler des enquêtés sur des thématiques (\gls{be}, mobilisation des
+bois, etc.) dont ils n'avaient pas forcément connaissance. Afin d’optimiser le temps
+relativement court de l’enquête, nous avons donc préféré nous focaliser sur des
+propriétaires qui avaient au moins montré un certain intérêt pour FOREDAVENIR.
+Ce choix a permis de nous concentrer sur la diversité potentielle de
+ces propriétaires, tant dans leurs motivations initiales que dans leurs manières
+de s’approprier le programme porté par le CRPF. Par ailleurs, s’il est important
+de comprendre les ressorts individuels qui guident l’action, le propriétaire
+n’est pas un acteur isolé. Il s’insère dans un environnement et construit son
+comportement en interaction avec d’autres acteurs. Parallèlement aux entretiens
+menés auprès des propriétaires, nous avons donc mené des entretiens
+complémentaires auprès de différents acteurs impliqués dans FOREDAVENIR
+(opérateurs économiques, techniciens forestiers, élus\ldots{}) pour essayer
+d’appréhender et de caractériser, en termes de convergences ou de points de
+tensions, les dynamiques collectives dans lesquelles les propriétaires s’insèrent.
+Plus exploratoire, cette phase d’entretiens complémentaires visait à identifier
+les facteurs collectifs qui pouvaient favoriser ou freiner l’implication des
+propriétaires forestiers dans le programme expérimental FOREDAVENIR.
+
+\subsubsection{Construction du cadre échantillonnage}
+
+Nous avons voulu construire un échantillon qui rend compte d'une diversité des
+profils. Nous ne voulions pas créer un échantillon statistique représentatif de
+la population étudiée. La littérature nous a appris que, souvent, les
+propriétaires les plus actifs sont ceux  qui ont de grandes propriétés ou des
+plans de gestion. Les territoires sur lesquels nous avons travaillé ont
+subi des remembrements ou des programmes de dynamisation de la sylviculture. La
+prise en compte du critère de participation à une action antérieure nous aurait
+permis de tester l'influence des dynamiques territoriales. Nous avions donc
+besoin des critères de surface, de participation à une action antérieure et la
+répartition des propriétés sur les 3 territoires pour construire notre
+échantillon.
+
+%D'après la littérature, la taille de la propriété forestière est un indicateur
+%du degré d'implication des propriétaires dans les questions de sylviculture et
+%de filière forêt-bois. L'expérience empirique~\citep{novais2010_ref92} montre
+%que l'exécution ou la délégation de l'ensemble ou d'une partie des travaux
+%sylvicoles est associée aux grandes propriétés forestières lorsque ces travaux
+%s'insèrent dans un \indexp{itinéraire sylvicole}\footnote{Un itinéraire
+%sylvicole est l'ensemble des travaux à réaliser pour arriver à l'objectif pour
+%un peuplement spécifique}.
+
+\subsubsection{Sélection opérationnelle des propriétaires}
+
+Dans le cadre de mon stage, le programme FOREDAVENIR est porté par le \indexp{CRPF}, je
+me suis donc appuyé sur lui pour obtenir une liste de personnes à contacter.
+Pour des raisons d'anonymat et de sécurité de l'information, le CRPF ne pouvait
+nous fournir que la surface des propriétés avec leur territoire d'appartenance
+et un numéro d'identification. Afin d'appliquer au mieux notre schéma
+d'échantillonnage, les propriétaires de la liste du CRPF ont été classés
+dans 3 classes de surface: de 0 à 4, de 4 à 25,
+et 25 et +. La technique d’échantillonnage qui a été utilisée s'apparente à un
+\indexp{\'{e}chantillonnage par quotas}, c'est-à-dire que la proportion de
+propriétaires à interroger par classe dans notre échantillon correspond à la proportion de
+propriétaires par classes dans notre population (voir tableau~\ref{tab:ech}).\\
+
+\begin{table}[t]
+  \centering
+  \caption{Répartition des propriétaires participant à FOREDAVENIR par classes
+  de surface}\label{tab:ech}
+  \begin{tabulary}{\columnwidth}{|l|c|c|c|c|c|}
+    \hline Classes (ha) & ]0;4]&]4;25]&]25;+$\infty$]&Total\\
+    \hline Nombre & 95 & 127 & 20 & 242\\
+    \hline Pourcentage & 39.26\% & 52.48\% & 8.26\% & 100\%\\
+    \hline
+  \end{tabulary}
+\end{table}
+
+Sur la base de cette première typologie succincte, nous avons
+indiqué au CRPF que nous voudrions 33 coordonnées de propriétaires pour les
+contacter. Pour les sélectionner nous avons respecté les pourcentages par classes
+de surface et nous avons fait attention à avoir approximativement le même nombre
+de propriétaires par territoire\footnote{Au lancement du projet TEPOS, Pellegrue
+et Auriolles étaient dans le SIPHEM~; pour l'étude des dynamiques, on considère
+donc que Pellegrue et Auriolles font toujours partie du SIPHEM}.
+
+\subsection{Création des grilles d'entretiens}\index{grille d'entretiens}
+
+La réalisation d'entretiens semi-directifs\index{entretien semi-directif}
+suppose la construction de grilles
+d'entretiens pour structurer et conduire les échanges
+avec les personnes interrogées. J'ai créé mes grilles en me basant sur des
+grilles de~\citet{consoreDeufficDehez_ref79,deuffic2012_ref91}. Une enquête a
+pour objectif de répondre aux questions "Qui fait quoi?", "Comment?" et "Pourquoi?". On
+retrouvera donc toujours, parmi chaque thème abordé, une partie qui fait décrire,
+une partie qui a pour but d'appréhender le cheminement du répondant et une
+partie qui a pour but de faire apparaître les motivations qui justifient les
+actions des enquêtés.\\
+
+J'ai interrogé 2 grandes populations : la population cible, les propriétaires
+forestiers et une population complémentaires composée d'opérateurs économiques,
+d'agents des collectivités et des services de l’État. Nous ne cherchions
+pas les mêmes informations parmi ces 2 populations. J'ai construit 2 modèles de
+grilles : une pour les propriétaires et une pour les opérateurs économiques (voir
+annexes~\ref{App:appxB} et \ref{App:appxC}). Chacune des grilles aborde plusieurs thèmes. Les services
+de l’État et les collectivités se différencient entre eux. Il était donc impossible de faire une
+grille commune. Les grilles ont
+été construites selon les informations que l'ont cherche à obtenir. A titre
+d’exemple, la compréhension des logiques d'action des propriétaires nécessitait
+d'obtenir des informations factuelles sur les pratiques sylvicoles passées et
+actuelles, comment le propriétaire perçoit FOREDAVENIR et comment il envisage
+l'avenir de sa forêt. Pour les services de l’État et les collectivités, je
+préparais une liste de questions, j'introduisais la discussion en leur demandant
+d'expliciter leur rôles et leurs missions.
+
+\section{Réalisation et analyse des entretiens}
+
+J'ai privilégié 2 modes de contact pour la prise de rendez-vous, soit par
+téléphone soit par e-mail. J'ai obtenus des entretiens auprès de 30 personnes:\\
+Propriétaires forestiers : 17\\
+Entretiens complémentaires : 13
+\begin{compactitem}
+  \item 5 acteurs économiques de la filière
+  \item 8 agents des collectivités ou des services de l’État
+\end{compactitem}
+J'ai effectué les entretiens soit seul, soit avec Vincent, soit avec Philippe.
+Sur une liste de 33 propriétaires, 16 ont accepté un entretien, 8 ont décliné
+et 9 n'ont pas pu être contacté, soit 48, 24 et 27,27\%. J'ai
+fait l'entretien d'un propriétaire supplémentaire car ce dernier avait un statut
+particulier. La répartition des propriétaires par classes de surface a été
+résumé dans le tableau~\ref{tab:ech2}.\\
+
+\begin{table}[t]
+  \centering
+  \caption{Répartition des propriétaires rencontrés par classes de surface}\label{tab:ech2}
+  \begin{tabulary}{\columnwidth}{|l|c|c|c|c|c|}
+    \hline Classes (ha) & ]0;4]&]4;25]&]25;+$\infty$]&Total\\
+    \hline Nombre & 5 & 8 & 3 & 16\\
+    \hline Pourcentage & 31.3\% & 50.1\% & 18.8\% & 100\%\\
+    \hline
+  \end{tabulary}
+  \floatfoot{Les proportions par classes de surface des propriétaires rencontrés
+  correspondent aux proportions par classes de surface des propriétaires ayant
+  répondu à FOREDAVENIR (voir tableau~\ref{tab:ech}).}
+\end{table}
+
+L'ensemble de ces entretiens ont eu lieu alors qu'aucune opération sylvicole
+n'avait commencé. L'exécution des entretiens à ce stade de
+FOREDAVENIR présentait des inconvénients. On ne pouvait saisir ni
+l’ensemble de la démarche proposée par ce programme expérimental, ni ses
+résultats. \textit{A contrario}, cette temporalité offrait la possibilité de
+percevoir plus finement les leviers d’action, les freins à l’engagement des
+propriétaires et les dynamiques en cours et leurs impacts potentiels sur
+les propriétaires. C'est ce qui m'a permis de construire une
+typologie dynamique. En réalisant l’enquête à la fin du programme, on aurait en
+effet pu connaître les travaux réalisés mais pas forcément les changements
+intervenus car, par exemple, il aurait été difficile d’appréhender d’où partait
+le propriétaire. Alors que là, on pouvait espérer mettre plus facilement en
+évidence motivations et le cheminement suivi par les propriétaires, de ses
+pratiques initiales aux types de travaux envisagés. Pour construire ma typologie
+en tenant compte de cette dynamique, j'ai utilisé le taux d'activité et le degré
+d'insertion des propriétaires comme discriminants. L'utilisation de variables
+continues plutôt que discrètes m'a permis de rendre compte d'une évolution
+probable du comportement forestier des propriétaires. Je me suis fortement
+inspiré de~\citet{novais2010_ref92}~pour créer mes modèles de travaux (voir
+tableau~\ref{tab:novais}).\\
+
+%C’est pour essayer de saisir
+%le changement en train de se faire que nous relevé le défi  de la construction
+%d’une typologie  dynamique visant justement à représenter la manière dont les
+%propriétaires enquêtés pouvaient potentiellement changer de catégorie avec la
+%mise en œuvre de FOREDAVENOR.\\
+
+
+%a apporté des avantages et des inconvénients. Grâce à cette
+%temporalité, il était possible de percevoir les dynamiques en cours et l'impact
+%de celles-ci sur les propriétaires, c'est ce qui m'a permis de construire une
+%typologie dynamique. Pour cela, j'ai utilisé le taux d'activité et le degré
+%d'insertion des propriétaires comme discriminants. L'utilisation de variables
+%continues plutôt que discrètes m'a permis de rendre compte d'une évolution
+%probable du comportement forestier des propriétaires. Je me suis fortement
+%inspiré de~\citet{novais2010_ref92}~pour créer mes modèles de travaux (voir
+%tableau~\ref{tab:novais}).
+
+\begin{table}
+  \centering
+  \caption{Modèles de travaux~\citep{novais2010_ref92}}\label{tab:novais}
+  \begin{tabulary}{\columnwidth}{lllll}
+    \hline &&\multicolumn{3}{l}{Récolte}\\
+    \cline{3-5} &&N/A&Internalisation&Externalisation\\
+    \hline Entretien sous-bois&N/A&NN&NI&NE\\
+	   &Internalisation&IN&II&IE\\
+	   &Externalisation&EN&EI&EE\\
+    \hline
+  \end{tabulary}
+\end{table}
+
+%L'inconvénient majeur était que, parmi les propriétaires
+%rencontrés, aucun n'avait déposé un dossier qui avait été accepté; je ne pouvais
+%donc pas connaître, via les propriétaires, l'intégralité de la procédure de
+%FOREDAVENIR, de la première lettre à la réalistaion des travaux.
+
+A partir du 15$^{e}$ entretien, j'ai vu apparaître une redondance de
+l'information. J'ai donc considéré avoir une bonne diversité de points de vue~;
+ce qui est l'objectif premier lorsque l'on réalise une enquête par entretiens.
+De plus, une vingtaine d' entretiens suffisent \textquote[\citealp{IRSTEA_ref69}]
+{largement} pour créer une typologie. A cela s'ajoute le nombre initial de propriétaires
+joignables fournis par le CRPF (33) et les contraintes de temps à respecter pour
+réaliser l'analyse et rédiger le rapport. Ces facteurs ont fait que j'ai décidé
+d’arrêter les entretiens de propriétaires à 17. Tous les entretiens ont été
+retranscrits, soit sous la forme de synthèse à partir de la
+prise de notes, soit ont été retranscrits partiellement ou totalement grâce aux
+enregistrements audios. 6 entretiens ont été retranscrits totalement par la
+transcriptrice IRSTEA, j'ai retranscrit partiellement les autres en relevant
+les verbatims qui rendent compte des argumentaires développés. L'analyse s’est
+ainsi déroulée en deux temps. Pour
+chaque entretien, j’ai tout d’abord identifié les thèmes et enjeux structurants
+pour l’enquêté et les argumentaires associés.  Ensuite, j’ai procédé à une
+analyse transversale pour identifier les points saillants qui traversaient les
+différents entretiens et positionner les argumentaires identifiés les uns par
+rapport aux autres.
+
+
+\chapter{Résultats et analyse}
+
+\section{Typologie des propriétaires avant FOREDAVENIR}
+
+Au cours des entretiens, plusieurs opérateurs ont décrit les propriétaires comme
+étant peu actifs~; voir même, ils se distinguent par une~\textquote{absence de
+culture forestière}. J'ai donc construit une typologie afin de confronter les
+résultats de mes enquêtes avec la parole des opérateurs. Quatre catégories de
+propriétaires se sont dessinées suite à ce travail de synthèse. Les 4 catégories
+sont résumées dans le tableau~\ref{tab:typ}.
+
+\begin{sidewaystable}%
+  \centering%
+  \caption{Classification des propriétaires}\label{tab:typ}%
+  \begin{tabulary}{\columnwidth}{|p{28mm}|p{45mm}|p{45mm}|p{45mm}|p{45mm}|}%
+    \hline Catégorie & Forestiers professionnels & Forestiers en devenir &%
+    Agriculteurs & Propriétaires distants\\%
+    \hline Discriminants&%
+      \begin{compactitem}%
+	\item très actifs%
+	\item éléments moteurs de la filière locale%
+      \end{compactitem}&%
+      \begin{compactitem}%
+	\item très actifs%
+	\item sont en phase d'insertion dans la filière%
+      \end{compactitem}&%
+      \begin{compactitem}%
+	\item actifs%
+	\item ne sont pas inséré de manière construite dans la filière%
+      \end{compactitem}&%
+      \begin{compactitem}%
+	\item inactifs%
+	\item absence d'intégration dans la filière%
+      \end{compactitem}\\%
+    \hline Modèle de travaux&II;IE;EE&IE;IN&IN&NN\\%
+    \hline Caractéristiques&%
+      \begin{compactitem}%
+	\item une grande propriété forestière >90ha%
+	\item des blocs de parcelles cohérents%
+	\item objectifs de production ou de défiscalisation%
+      \end{compactitem}&%
+      \begin{compactitem}%
+	\item matériel propre pour le nettoyage et l'entretien%
+	\item connaît le monde végétal%
+	\item développe son patrimoine forestier selon une cohérence%
+	\item considérations esthétiques ou biologiques%
+      \end{compactitem}&%
+      \begin{compactitem}%
+	\item matériel propre pour le nettoyage et l'entretien%
+	\item connaît le monde végétal%
+	\item entretien du patrimoine forestier déjà existant
+      \end{compactitem}&%
+      \begin{compactitem}%
+	\item ne possède pas de matériel%
+	\item ne connaît pas ou mal ses parcelles%
+	\item n'a que très peu été en contact avec le monde végétal%
+      \end{compactitem}\\%
+    \hline Bois-énergie & valorise au maximum les bois et ne produit le BE que %
+      lorsque ce dernier n'est pas bon pour aller en BO ou en BI&%
+      &coupe son propre bois bûche mais ne le commercialise pas%
+      &fait couper ses bois pour avoir du bois bûche mais ne le commercialise pas\\%
+    \hline
+  \end{tabulary}
+\end{sidewaystable}
+
+\subsection{\textquote{Forestiers professionnels}}
+
+Le groupe des \textquote{forestiers professionnels} se distingue par une forte implication
+dans le domaine de la sylviculture et une intégration dans la filière. Ces
+membres gèrent activement des propriétés souvent conséquentes, homogènes et
+cohérentes. Leurs pratiques sylvicoles se caractérisent par un entretien des
+parcelles et des récoltes de bois en adéquation avec leurs documents de gestion.
+Ces propriétaires ont la capacité de définir leur mode de gestion, ce sur des
+parcelles ou sur l'ensemble de la propriété. L'internalisation ou
+l'externalisation des travaux d'entretien et des coupes découlent donc de leurs
+choix de gestion. Certains de ses propriétaires utilisent ainsi
+leurs connaissances et la surface de leurs forêts pour tester eux-mêmes des
+essences et des itinéraires sylvicoles:
+
+\blockquote[propriétaire 1]{C’est ma
+station qui me conduit à mettre du pin maritime. Néanmoins, je m’amuse à
+faire des essais. Donc c’est pour ça que j’ai mis un petit peu de
+pin taeda, pas que du pin maritime. Donc j’ai déjà 2 parcelles en pin taeda, et
+en cours de PSG j’en ferai une 3ème sur une autre zone. J’ai une parcelle de
+chênes rouges d’Amérique, puisque le chêne rouge d’Amérique a à peu près la même
+appétence de sol que le pin maritime sur les stations, et il se comporte bien.}
+
+Tout en s’inscrivant parfois dans une logique expérimentale, les modes de
+gestion adoptés par le groupe des \textquote{forestiers professionnels} ont toujours une
+finalité économique. Les propriétaires cherchent ainsi à valoriser au maximum
+leur propriété tant dans une optique de défiscalisation que de production de
+bois. Cela signifie qu’ils sont intéressés par l’ensemble des produits bois
+possibles, du bois-bûche en autoconsommation à la commercialisation du~\gls{bo},
+du~\gls{bi} et~\gls{be}. Mettant en avant l’étendue et
+la gestion active de leurs parcelles, certains affichent l’objectif de sortir
+différentes qualités de bois à chaque récolte. Leurs capacités d'intervention ne
+se bornent pas à la sylviculture. Les
+\textquote{forestiers professionnels} utilisent leurs expériences professionnelles
+et leurs connaissances sur la filière forêt-bois pour négocier au mieux la
+commercialisation. Tel est le
+cas de ce propriétaire qui fait jouer la concurrence afin d’obtenir les contrats
+qui lui conviennent le mieux:
+
+\blockquote[propriétaire 1]{Je fais une
+consultation, je prends au mieux disant, pas forcément le
+moins disant, je prends le mieux disant. Donc *** a travaillé sur mes
+parcelles parce que ce sont eux qui avaient le marché pour le boisement
+compensateur LGV. Là, actuellement je fais des boisements, je boise les
+parcelles qui sont ici, donc là j’ai 6 ha en reboisement. Et donc là j’ai fait
+l’exploitation du BE a été faite par ***, une entreprise du 79 ils m’ont
+donné le meilleur prix à la tonne.}
+
+\subsection{\textquote{Forestiers en devenir}}
+
+Le groupe des forestiers en devenir se distingue par une forte implication dans
+le domaine de la forêt et la volonté de s'intégrer dans une filière. Possédant
+leur propre matériel, ces propriétaires s’investissent dans l’entretien et le
+nettoyage de leur propriété. Souvent, la propriété est composée de parcelles formant des
+blocs cohérents compris entre 3 et 20ha. Leur gestion sylvicole s’inscrit dans
+une vision à long terme et intègre plus explicitement des considérations
+esthétiques et environnementales sans pour autant négliger les fonctions
+économiques de la forêt:
+
+\blockquote[propriétaire 2]{Les bois, ils protègent les vignes. Alors des fois,
+ils vous amènent certaines nuisances comme par exemple le manque d’ensoleillement,
+des endroits un peu humides, mais lorsqu’il y a des périodes de gel, ça vous
+arrête les courants d’air~[\ldots]~On sent bien que des fois
+il y a 2 chênes qui se gênent, qu’il faudrait éclaircir les acacias
+mais il faut quelqu’un qui puisse faire les coupes. Nous, économiquement, on serait bien contente de
+faire une coupe de bois, de récupérer de l’argent avec les
+acacias, faire peut être aussi une coupe de chênes parce que voilà ça les
+entretiens. On a l’aspect environnemental mais on veut aussi le côté économique}
+
+
+Ce témoignage illustre l’esprit des \textquote{forestiers en devenir}~: un intérêt
+pour la dynamique des peuplements existants et un désir d’accroître leur
+valorisation économique. Cet esprit se traduit ici par la recherche d’opérateurs
+capables de faire les travaux de coupes. De manière plus générale, les
+\textquote{forestiers en devenir} souhaitent développer leur patrimoine
+forestier. Ils ont pu amorcer cette trajectoire avant FOREDAVENIR  puisque que
+certains sont déjà engagés dans des démarches d’amélioration sylvicole quand
+d’autres ont étendu leurs forêts par boisement ou rachat de parcelles adjacentes.
+Construite sur le long terme, la stratégie de ces propriétaires est plus ou
+moins avancée et peut prendre différentes formes, qu’il s’agisse de se doter
+d’un~\gls{psg}, de se regrouper et d’adopter un~\gls{psgc}, de s’engager dans une
+sylviculture type \indexp{Prosilva}  ou encore de transmettre la propriété forestière
+avec une continuité de gestion.
+
+\subsection{\textquote{Agriculteurs}}
+
+Le groupe des~\textquote{agriculteurs} se distingue par une relative implication dans le
+domaine de la forêt et par une absence d’intégration construite dans la filière.
+Ces propriétaires sont agriculteurs ou ont connu le monde agricole de par leurs
+parents. Ils connaissent donc le monde végétal et possèdent un petit parc
+matériel qui leur permet d’entretenir les sous-bois. Leurs pratiques sylvicoles
+se limitent le plus souvent à des activités de nettoyage comme l’explique un
+propriétaire avant tout soucieux d’éviter~\textquote[propriétaire 3]{les broussailles} et d’avoir
+\textquote[propriétaire 3]{des bois propres}. Mais cette logique d’action, qui se nourrit des héritages
+agricoles du territoire, peut receler d’autres potentialités. Pour avoir une
+propriété \textquote[propriétaire 3]{qui ressemble à quelque chose}, ce propriétaire aurait aussi aimé
+regrouper ses parcelles dispersées sur plusieurs communes~: \blockquote[propriétaire 3]{mon seul regret
+c’est ne pas avoir eu des parcelles un peu plus convenables}
+Dans tous les cas, pour~\textquote{les agriculteurs}, la forêt apparaît comme un espace
+complémentaire, un espace d’appoint. Ils récoltent régulièrement du bois bûche
+pour leur consommation personnelle ou utilisent la forêt pour transformer
+d’anciennes terres agricoles en un cadre de vie attractif.  S’ils peuvent aux
+besoins couper quelques arbres, ces ventes très occasionnelles se font
+généralement sans faire jouer la concurrence et sans contrat. C’est pour cela
+que je dis qu’il y a une absence d’intégration construite dans la filière. 
+
+\subsection{\textquote{Propriétaires distants}}
+
+Le groupe des \textquote{propriétaires distants} se distingue par une absence d’implication
+dans la gestion sylvicole et une absence d’intégration dans la filière. Ils
+détiennent par héritage des propriétés généralement inférieures à 2ha et souvent
+composées de parcelles éparpillées. Habitant parfois assez loin (sud Gironde,
+Pays Basque\ldots{}), ils ne savent pas toujours où sont situées ces parcelles, n’ont
+jamais vraiment eu de contact avec le monde forestier et considèrent
+généralement que leur propriété n’est pas exploitable, ni même utilisable comme
+espace d’appoint. Ce groupe se caractérise ainsi par une distance relationnelle
+ou physique vis-à-vis de la forêt. Ce désintérêt peut aller jusqu’au rejet.
+Certains de ces \textquote{propriétaires distants} perçoivent leur forêt comme
+un fardeau~: \textquote[propriétaire 4]{en réalité, je voudrais m’en débarrasser} explique ainsi une
+personne retraitée qui habite le sud du département de la Gironde.
+
+On pourrait penser que ces personnes sont potentiellement intéressées par des
+actions forestières ou foncières visant à restructurer leur propriété. Or, les
+expériences vécues lors d’opérations de remembrement menées sur le territoire
+dans les années 1980  semblent avoir plutôt laissé un goût amer. Tel est le cas
+de cette propriétaire qui regrette \textit{a posteriori} d’avoir échangé deux petites
+parcelles boisés en pin maritime contre une plus grande composée d’accrus~:
+\blockquote[propriétaire 4]{rétrospectivement, j’aurais dû intervenir~; j’aurais dû refuser}
+Si on peut s’interroger quant à l’influence de cette mauvaise expérience  sur
+l’implication des personnes concernées dans un programme tel que FOREDAVENIR,
+ce récit confirme surtout la difficulté de ces propriétaires à être acteur du
+devenir de leur forêt.
+
+La passivité des propriétaires n’est pas toujours aussi évidente et peut être
+plus complexe. Elle peut être issu de la combinaison de choix personnels avec
+des dynamiques forestières différenciées. Tel est le cas  d’un
+propriétaire possédant 3ha en Est Gironde mais aussi plus de 100ha dans les
+Landes. Tandis que celles-ci sont délégation de gestion totale, les parcelles
+Girondines ne sont pas entretenues et ce propriétaire habite dans le pays Basque.
+Même si la configuration est un peu particulière, il y a bien une forme de
+distance physique et relationnelle avec la forêt.
+
+\section{Appropriation de FOREDAVENIR par les propriétaires}
+
+\subsection{Une appropriation à géométrie variable révélatrice de motivations hétérogènes}
+
+Les propriétaires enquêtés n’ont pas tous la même perception du programme
+FOREDAVENIR et n’expriment pas les mêmes attentes. Leurs motivations, les
+leviers d’actions identifiés et les freins éventuels qui pourraient limiter leur
+implication peuvent ainsi varier selon les propriétaires. Ce résultat peut
+paraître logique au regard de leurs rapports différenciés à la forêt. Cependant,
+les différentes formes d’appropriations identifiées ne recoupent pas
+nécessairement les profils de propriétaires établis. Comprendre l’appropriation
+à géométrie variable de FOREDAVENIR constitue donc une étape supplémentaire pour
+appréhender les passerelles entre catégories et donc les dynamiques de
+changement potentiellement impulsées par ce programme.\\
+
+\begin{table}[ht!]
+  \centering
+  \caption{Matrice synthétique des interactions entre les actions offertes par
+  FOREDAVENIR et les motivations des propriétaires}\label{tab:leitmotiv}
+    \begin{tabulary}{\columnwidth}{|p{28mm}|p{28mm}|p{28mm}|p{28mm}|p{28mm}|}
+    \hline \textbf{Catégories}&\textbf{Motivations / objectifs} & \textbf{Freins}
+      & \textbf{Éléments attracteurs} & \textbf{Leviers pour mobiliser}\\
+    \hline Forestiers professionnels&\multirow{2}{30mm}{Optimiser la production
+      de biomasse}&Temporalité&Subventions&Amélioration\\
+    \cline{1-1} Propriétaires distants&&Éligibilité&Faire exploiter par d'autres&Délégation\\
+    \hline \multirow{2}{30mm}{Forestiers en devenir}&\multirow{3}{30mm}{Insertion filière}
+      &Institutionnali\-sation&Obtenir des conseils&Regroupement\\
+      &&Éligibilité&Changer d'opérateurs&Animation\\
+    \cline{1-1}  Agriculteurs&&&Diagnostic&Amélioration\\
+    \hline \multirow{2}{30mm}{Agriculteurs}&\multirow{3}{30mm}{Entretien du patrimoine}
+      &Temporalité&Trouver des opérateurs&Animation\\
+      &&Institutionnali\-sation&Diagnostic&Amélioration\\
+    \cline{1-1} Propriétaires distants&&Éligibilité&Trouver un repreneur&Réorganisation foncière\\
+    \hline
+  \end{tabulary}
+\end{table}
+
+Le tableau~\ref{tab:leitmotiv} a permis de classer les motivations, les freins
+perçus par les propriétaires, les éléments du programme qui les intéresse et les
+leviers sur lesquels peuvent jouer les opérateurs pour inciter les propriétaires
+à s'engager selon la typologie.
+
+\subsubsection{Intensifier la production de biomasse}
+
+
+Les \textquote{forestiers professionnels}, dont l’essentiel de la propriété est
+généralement composée de pins maritimes, perçoivent dans FOREDAVENIR,
+l’opportunité d’optimiser la conduite des peuplements
+feuillus. Pour certains, il s’agit d’atteindre les objectifs de diversification fixés par
+leur~\gls{psg}, pour d’autres il s’agit d’aligner la conduite des peuplements qu’ils
+ont en Est Gironde sur la manière dont est géré le reste de leur propriété dans
+le massif Landais. Cette dernière configuration concerne notamment une
+\textquote{forestière professionnelle}. Elle souhaite installer des peupliers sur les
+parcelles récemment achetées en Est Gironde, mais aussi un~\textquote{propriétaires distants}
+qui espère faire exploiter et gérer sa propriété girondine (3ha environ) de
+manière similaire à celle qu'il possède dans les Landes de Gascogne. Pour ces
+propriétaires, la rentabilité économique des opérations constitue le
+premier critère de décision~; il conditionne leur investissement dans
+FOREDAVENIR Ils sont ainsi tout à fait disposés à exploiter
+leurs taillis en~\gls{be} et ne voient aucune objection à utiliser les
+futurs peuplements pour développer ce débouché, à condition qu’il soit
+rémunérateur.\\ 
+
+La plantation de feuillus est plus onéreuse que la plantation de résineux. La
+rentabilité de peuplement feuillus est donc en partie dû à leur coût de
+plantation. C'est pourquoi ces propriétaires montrent un intérêt particulier pour
+les subventions à la conversion. Elles leurs permettront d'aligner la rentabilité
+du feuillu sur celle du pin maritime. Parmi les obstacles rencontrés, on peut évoquer la difficulté
+d’appréhender l’éligibilité des peuplements feuillus qu’ils possèdent
+(voir \ref{sec:eli}). La
+\textquote{lenteur} supposée du programme est autre frein mentionné. Conduisant leurs
+peuplements selon un \indexp{PSG} très précis, certains \textquote{forestiers professionnels}
+redoutent donc que le temps de montage, d’instruction des dossiers et que
+les délais de versement des aides retardent les coupes inscrites dans leur
+document de gestion.
+
+\subsubsection{S'insérer dans une filière}
+
+D’autres propriétaires, essentiellement des~\textquote{forestiers en devenir} et
+quelques \textquote{agriculteurs}, attendent de FOREDAVENIR qu’il optimise leur
+production de bois mais surtout qu’il favorise leur insertion dans une dynamique
+de filière. Au-delà des travaux ponctuels qu’ils pourraient réaliser dans le
+cadre du programme, ils cherchent ainsi à se constituer un réseau et à se
+positionner dans une chaîne de valeur. Ce travail de prospection doit permettre
+soit de trouver des opérateurs qui sachent les conseiller et faire les travaux
+souhaités, soit de diversifier leurs interlocuteurs afin de sortir d’une
+situation de dépendance vis-à-vis d’un opérateur donné. Dans cette optique,
+ils peuvent également se montrer ouverts à des logiques de regroupement avec
+d’autres propriétaires. Cet intérêt est d’autant plus marqué que ces
+propriétaires, en plus d’être dans la même incertitude que la catégorie
+précédente quant à l’éligibilité de leurs peuplements, peuvent être confrontés à
+la difficulté d’atteindre la surface minimale requise : 4ha atteignable en lots
+de 1ha dans un rayon de 5 km (voir~\ref{sec:eli}). 
+
+Ces propriétaires sont donc
+particulièrement sensibles à la dynamique d’animation développée dans
+FOREDAVENIR tout en étant intéressés par les subventions. Cependant, ils apparaissent également vigilant quant à la nature et
+aux modalités de cette dynamique collective. Attentifs aux arguments économiques
+mais aussi environnementaux, ils ne souhaitent pas s’inscrire dans n’importe
+quelle filière. N'étant pas issu du massif landais et possédant des propriétés
+essentiellement composées d’essences feuillues, ils peuvent par exemple porter
+un jugement critique sur la culture du pin maritime, en raison des risques
+qu’ils lui associent (tempêtes, nématode, processionnaire, etc.). Ils ne sont donc
+pas favorables à une extension de cette sylviculture et si une telle logique
+institutionnelle devait émerger du programme, elle pourrait sans doute
+constituer un frein à leur engagement. Défendant une conception plus
+multifonctionnelle de leurs forêts, ces propriétaires veulent améliorer les
+peuplements feuillus existants et développer une sylviculture permettant de
+concilier production de bois, dynamiques écologiques et attachement à un
+patrimoine. Leur rapport au BE s’inscrit dans cette perspective. Ils ne
+s’opposent pas au débouché BE si celui-ci permet de valoriser les bois issus
+des travaux de nettoyage ou des taillis mais ils ne
+sont pas forcément convaincus par cet usage du bois en tant qu'objectif du
+peuplement. Ils ne comptent donc pas adopter
+une sylviculture permettant d’optimiser sa production.
+
+\subsubsection{Évaluer et améliorer son patrimoine forestier ou foncier}
+
+Certains propriétaires, généralement des \textquote{agriculteurs} et surtout des
+\textquote{propriétaires distants}, ont une vision plus tâtonnante et restrictive de
+FOREDAVENIR Ils connaissent peu de chose du programme, hésitent à y émarger et
+dans tous les cas n’en font pas une priorité. L’intérêt éventuel qu’ils y voient
+est qu’il peut leur permettre de faire évaluer leur patrimoine ou de réaliser
+des travaux ponctuels à moindre coût. Ils sont donc principalement intéressés
+par les subventions ou la réalisation d’un diagnostic sylvicole. Mais
+l’implication de ces propriétaires reste bien hypothétique et, si elle était
+effective, devrait être a minima.
+
+La taille de la propriété est souvent le principal facteur de cette passivité.
+Celle-ci constitue un double frein. D'une part, ils sont conscients que de petites
+parcelles ne sont pas rentables, donc ils ne s'investissent pas dans la
+sylviculture~; d'autre part, même si ils étaient motivés, ils ne pourraient pas
+atteindre, seuls, les surfaces minimums requises.
+
+Ce frein peut être d’autant plus rédhibitoire que ces propriétaires se montrent
+généralement réticents à toute emprise institutionnelle : ils veulent rester
+maîtres chez eux. Contrairement à la catégorie précédente, ils semblent donc
+moins enclins à se regrouper. Considérant la forêt avant tout comme une
+propriété privée qui fournit du bois-bûche et des champignons pour leur
+autoconsommation, ces propriétaires craignent plus largement, en s’associant à
+ce type de programme supervisé par des administrations de l’État, de se voir
+imposer des travaux ou des documents de gestion qui remettraient en cause leur
+autonomie. Cela ne signifie pas qu’ils n’ont pas de réseaux mais ceux-ci restent
+informels (voisins, proches, collègues) et essentiellement tournés vers
+l’échange d’informations.
+
+Si d’autres propriétaires se montrent moins réticent quant à la dimension
+institutionnelle de FOREDAVENIR, c’est parce qu’ils espèrent que ce programme
+leur offrira l’occasion de se retirer de la forêt. Sans héritiers et considérant
+que leur forêt est devenue une charge, certains des propriétaires enquêtés
+envisagent en effet de vendre leur propriété et souhaitent utiliser FOREDAVENIR
+pour améliorer sa valeur foncière et faciliter la recherche de repreneurs.
+
+Enfin, la temporalité de décision de ces propriétaires n’est pas forcément en
+adéquation avec la temporalité du programme. Alors que ce dernier nécessite de
+déposer les dossiers dans un délai d’un an et demi après le début du projet,
+les propriétaires consternés n’ont pas forcément conscience de ces échéances,
+soit parce que la gestion de leur propriété est depuis longtemps « hors du temps »,
+soit parce qu’ils ont d’autres priorités à ce moment de leur vie (maladie ou
+maladie du conjoint notamment)~\citep{butler2017family_ref113}.  Même s’il n’est pas toujours
+perçu ainsi, ce décalage temporel nous semble bien constituer un frein potentiel.
+
+\begin{sidewaystable}%
+  \centering%
+  \caption{Répartition hypothétique des propriétaires de l'échantillon après FOREDAVENIR}\label{tab:typ2}%
+  \begin{tabulary}{\columnwidth}{|p{28mm}|p{45mm}|p{45mm}|p{45mm}|p{45mm}|}%
+    \hline Catégorie & Forestiers professionnels & Forestiers en devenir &%
+    Agriculteurs & Propriétaires distants\\%
+    \hline Nombre d'individus avant FOREDAVENIR &~3&~4&~6&~4\\
+    \hline Nombre potentiel d'individus après FOREDAVENIR
+      &\multicolumn{1}{p{45mm}@{\hspace*{\tabcolsep}\makebox[0pt]{$\longleftarrow$}}|}{~5}
+      &\multicolumn{1}{p{45mm}@{\hspace*{\tabcolsep}\makebox[0pt]{$\longleftarrow$}}|}{~4}
+      &\multicolumn{1}{p{45mm}@{\hspace*{\tabcolsep}\makebox[0pt]{$\longrightarrow$}}|}{~3}&~3\\
+    \hline Discriminants&%
+      \begin{compactitem}%
+	\item très actifs%
+	\item éléments moteurs de la filière locale%
+      \end{compactitem}&%
+      \begin{compactitem}%
+	\item très actifs%
+	\item sont en phase d'insertion dans la filière%
+      \end{compactitem}&%
+      \begin{compactitem}%
+	\item actifs%
+	\item ne sont pas inséré de manière construite dans la filière%
+      \end{compactitem}&%
+      \begin{compactitem}%
+	\item inactifs%
+	\item absence d'intégration dans la filière%
+      \end{compactitem}\\%
+    \hline Modèle de travaux&II;IE;EE&IE;IN&IE;IN&NN\\%
+    \hline
+  \end{tabulary}
+\end{sidewaystable}
+
+\subsection{Vers une recomposition de la typologie}
+
+L’appropriation à géométrie variable de FOREDAVENIR et le fait que celle-ci ne
+recoupe pas totalement la typologie établie permet de mettre en évidence la
+manière dont les individus peuvent potentiellement se déplacer au sein de cette
+typologie. C’est sur ces logiques de convergence que je vais maintenant
+insister.\\
+
+Le tableau~\ref{tab:leitmotiv} a permis de re-répartir les propriétaires au sein
+de la typologie. On obtient donc une typologie identique à la première mais avec
+une potentielle redistribution des individus dans les catégories. Le tableau
+\ref{tab:typ2} rend compte d'une double dynamique au sein de l'échantillon.
+
+D'une part des \textquote{forestiers en devenir} et des \textquote{agriculteurs}
+auront accru leur taux d'activité tout en consolidant leur réseau; d'autre part,
+quelques~\textquote{agriculteurs} et des \textquote{propriétaires distants}
+auront distendu leurs relations à la forêt.\\
+
+L'avènement officiel d'un regroupement sous forme de \gls{gieef}\index{GIEEF}
+pour certains, modélisé par la
+certification du \gls{psgc}\index{PSGc} par les services de l’État, les incitera à faire des
+consultations pour obtenir les travaux qui valorisent au mieux leurs bois tout
+en intégrant leurs considérations. A partir de ce moment, ils seront donc tenus
+d'être actif, conformément à leur plan de gestion, et s'inséreront dans une
+filière. Certes, l'officialisation du GIEEF sera probablement un élément
+déclencheur, il ne faut cependant pas oublier les \textquote{forestiers en devenir}
+qui ont une démarche moins collective. Ces derniers seront susceptibles de devenir
+des \textquote{forestiers professionnels} mais sur un temps plus long et à
+condition que leurs héritiers assurent une continuité de la démarche.
+
+Les \textquote{forestiers en devenir} peuvent être suivis, dans cette démarche
+d'accroissement du taux d'activité, par des \textquote{agriculteurs}. Étant
+ouvert au monde de la forêt et soucieux d'exploiter leurs biens, forestiers ou
+non, ils sont susceptibles de porter un intérêt croissant si on leur propose les
+bons outils. Si le programme, de part de l'animation faite et les travaux
+d'amélioration subventionnés, arrive à piquer la curiosité de ces
+\textquote{agriculteurs}. Alors ils seront susceptibles de devenir des
+\textquote{forestiers en devenir}. Cet \indexp{AMI} Dynamic bois semble donc
+avoir l'effet escompté~: de part l'animation, il sensibilise
+\textquote[\citealp{instructionTech_ref109}]{les propriétaires forestiers à
+l'utilité de la gestion sylvicole} et met en
+place de~\textquote[\citealp{instructionTech_ref109}]{nouveaux documents de gestion
+durable dans le cadre exclusif de plans de gestions concertés}. Cependant, cette
+tendance ne s'exprime pas chez tous les propriétaires.\\
+
+Des propriétaires sans repreneurs ou consternés souhaitent profiter de FOREDAVENIR
+pour augmenter la valeur du foncier. Certes, ils sont donc ouverts à la
+réalisation de travaux mais pas dans l'objectif d'une mise en production à long
+terme. L'objectif est de valoriser en vue d'une vente. Si ces propriétaires
+venaient à vendre, ils auront d'une part, participé aux objectifs de mobilisation
+des bois à destination des chaufferies~; d'autre part, ils auront utilisé l'AMI
+pour, en quelque sorte, se désensibiliser à l'utilité de la gestion sylvicole.
+
+\section{FOREDAVENIR, entre principes et ajustements}
+
+La partie qui suit présente les déclinaisons opérationnelles de FOREDAVENIR afin
+d’appréhender les dynamiques collectives et institutionnelles véhiculés par
+le programme. Les outils et instruments mis en place constituent un prisme
+privilégié pour étudier les effets d’une politique publique.
+Ils influencent le comportement des individus et les interactions entre acteurs
+d'une part, en orientant leur action et en formalisant une certaine représentation des
+problèmes~; d'autre part, en créant des incertitudes~\citep{lascoumes2005_ref116}.
+Si ces incertitudes peuvent être sources de confusions et de fragilisation, elles
+témoignent également de la dimension exploratoire du programme et peuvent donner
+lieu à des ajustements~; voir des innovations techniques ou organisationnelles. Les
+résultats présentés ici n'ont pas vocation à être exhaustifs mais à illustrer cette
+dynamique à partir de trois enjeux saillants.
+
+\subsection{Tâtonnement autour des surfaces et des qualités des bois éligibles}\label{sec:eli}
+
+\indexp{FOREDAVENIR} s'appuie sur 3 volets pour mobiliser rapidement du BE~:
+le premier porte sur
+l'investissement matériel dans la filière, le second porte sur l'investissement
+pour l'amélioration des peuplements et le troisième sur l'animation. Les
+propriétaires sont directement concernés par le deuxième volet. Comme dans les 2 autres
+volets, pour être éligible aux aides, le demandeur d'aides doit respecter des
+critères qui attribuent les financements selon les objectifs fixés. Les critères constituent
+donc un des instruments permettant de traduire les principes du programme en
+actions opérationnelles. La formulation des critères a en partie été délégué à
+la~\gls{draaf}\index{DRAAF} afin que ces derniers s'adaptent au mieux au spécificités
+régionales. Bien que cette délégation illustre le souci de prendre en compte les
+réalités du terrain, elle ne résout pas pour autant tous les problèmes soulevés,
+qu’ils s’agissent de l’opérationnalisation de notions parfois vagues
+(ex~:~\textquote{peuplements dépérissant}) ou de la volonté de concilier de
+multiples objectifs.\\
+
+\begin{wraptable}{l}{0.5\textwidth}
+  \centering
+  \caption{Résumé des principaux critères d'éligibilité et de leurs ajustements}\label{tab:crit}
+  \begin{tabulary}{\columnwidth}{|p{25mm}|c|c|}
+    \hline Conditions d'éligibilité & Valeur de x & x ajusté\\
+    \hline Dossier > x ha & 4&4\\
+    \hline Dossier par blocs de x ha &1&1\\
+    \hline Blocs dans un rayon de xkm &1&5\\
+    \hline Après travaux, xt de bois doivent être du BE &x>0&0\\
+    \hline 
+  \end{tabulary}
+\end{wraptable}
+
+Le premier critère d'éligibilité est la surface. Initialement, le~\citet{instructionTech_ref109}
+fixait le seuil minimum requis à la constitution du dossier à 4ha. Ces 4ha
+pouvaient être répartis en îlots de 1ha sans distance maximale tant que ceux-ci
+se situent sur la zone de FOREDAVENIR. Cette règle, qui reprend des critères
+utilisés lors de l'attribution des aides aux parcelles sinistrées par Klaus,
+montre la volonté de mobiliser la petite propriété tout en incitant au
+regroupement. Cependant, à la différence de Klaus, pour inciter les petits
+propriétaires à se regrouper, les~\glspl{ami} offre la possibilité aux
+propriétaires de se regrouper manière informelle~:
+\blockquote[administration publique 1]{L’objectif de regrouper les petites propriétés[…]
+  là il est possible de regrouper les propriétaires sur une structure non
+  formalisée. Donc franchement, ça c’est une première. Ça permet de sortir des
+  dossiers avec des petites propriétés dans un rayon de 5km. Beaucoup plus de
+  flexibilité, beaucoup plus}
+Les propriétaires ne sont donc plus obligés de passer par des formes juridiques
+complexes comme les ASLs (Associations Syndicales Libres) ou les ASAs (Association
+Syndicales Autorisées). À la place, ces derniers doivent désigner un
+mandataire ; il sera l'interlocuteur principal avec le service d'instruction et
+sera chargé de redistribuer les aides qui incombent au dossier.
+
+En résumé, tout en s'appuyant sur des règles existantes, ce programme
+exploratoire cherche à tester de nouvelles solutions mais cette ambition
+s’accompagne également d’hésitations et de tâtonnements. Peu après le lancement
+du projet, les services d'instructions régionaux ont ajouté un critère
+supplémentaire concernant la définition des surfaces éligibles~: les îlots
+constitutifs du dossier devaient se trouver dans un rayon de 1km. Suite à des
+discussions entre partenaires, cette distance a été augmenté pour atteindre 5km
+(voir tableau~\ref{tab:crit}). Or, il est probable que des opérateurs avaient
+déjà constitués des dossiers. Pour répondre aux nouvelles exigences, ces derniers
+ont donc été obligés de reconstituer les dossiers afin de respecter les nouveaux
+critères. Ces ajustements au début du programme peuvent donc ajouter aussi bien
+une charge de travail supplémentaire pour les opérateurs qu'une certaine
+incompréhension de la part des propriétaires qui ne comprennent pas pourquoi
+leurs parcelles ne sont plus éligibles. Dans ces conditions, un opérateur
+rencontré m'a confié que ces ajustements permanents pouvaient déstabiliser les
+propriétaires au risque de discréditer l'opérateur auprès de ces derniers~: \blockquote[opérateur 1]
+{Si c'est comme je pense, on va arrêter d'en faire. On passe pour des charlots!}.
+Sur le fond, ces hésitations illustrent peut-être la difficulté de trouver un
+juste équilibre entre 2 objectifs qui semblent s'opposer~: mobiliser des bois
+chez les petits propriétaires tout en assurant aux opérateurs que leurs travaux
+soient rentables. Un opérateur explique que même si le seuil minimum était fixé
+à 4ha, son objectif est de~\textquote{graviter autour} des propriétés identifiées
+pour essayer d'agglomérer un maximum de parcelles de manière à atteindre des
+surfaces de travaux de 15ha.
+
+Cette logique d’ajustement est également perceptible dans les débats autour du
+tonnage en bois des parcelles. À un moment, il a ainsi été décidé que les
+parcelles devaient contenir une quantité minimale et maximale de bois. Ce bornage
+visait à favoriser la mobilisation des bois tout en évitant que les aides aillent
+à des peuplements suffisamment riches pour s’auto-entretenir. Néanmoins suite à
+de nouvelles discussions, la quantité minimale de bois ne fait plus partie des
+règles d’éligibilités. Même si elle est en partie compensée par le durcissement
+des règles sur les surfaces éligibles, cette suppression pourrait freiner
+l’appétence des opérateurs. Mais on peut aussi penser que ce critère reste
+officieusement en vigueur comme en témoigne ce propriétaire confronté à des
+opérateurs qui refusaient un chantier par manque de bois~: \blockquote[propriétaire 5]
+{On m'a dit~: \textquote{Ah mais il faut du volume, il faut au moins X bennes
+pour amener l'outil, c'est très lourd, les charges}etc.}
+
+Enfin, le dernier critère d’éligibilité concerne la nature des peuplements. Tout
+en étant le c\oe{}ur du second volet, ce critère reste pour le moins ambigu.
+Certes le~\citet{instructionTech_ref109}
+défini comme peuplements éligibles les \textquote{taillis, de~\gls{tsf} ou d’accrus [\ldots],
+avec un objectif d’amélioration en futaie} mais il reste flou sur l'état
+sanitaire de ces peuplements. Il est écrit que ces
+peuplements sont souvent vieillissants et dépérissant. Or, cette terminologie,
+qui est très utilisée par les acteurs rencontrés et qu’on retrouve au cœur même
+du dossier de présentation de FOREDAVENIR, apparaît plus délicate à définir et
+à opérationnaliser. Les services de l’État sont d’ailleurs conscients que
+\textquote[administration publique 1]{même
+avec l’instruction technique, sur le terrain, c’est source d’appréciation~[\ldots]~Y
+a sujet à discussion}. Cette logique d’appréciation
+fragilise l’instruction des dossiers mais, d’une certaine manière, renforce aussi
+la nécessité des échanges. Les agents des services de l’État se déplacent donc
+sur les parcelles pour évaluer, avec les opérateurs et les propriétaires,
+l’éligibilité des parcelles identifiées. Systématiques dans un premier temps,
+ces visites pourront devenir plus ponctuelles dans un second temps lorsque les
+différents cas de figures possibles auront été identifiés et permis une forme
+d’apprentissage collectif.\\
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{qAbattu.jpg}
+  \caption{Photographie d'une parcelle inéligible}\label{fig:ineligible}
+\end{figure}
+
+Usantes et déstabilisantes, notamment pour les animateurs du projet, ces
+différentes incertitudes peuvent témoigner d’un manque de cadrage initial. Mais
+elles reflètent aussi la complexité du sujet et la dimension fondamentalement
+exploratoire et expérimentale de FOREDAVENIR. Les ajustements constatés
+peuvent ainsi être sources d’inventivité et révèlent l’importance des dynamiques
+collectives au sein de chaque projet, comme le souligne un membre des services
+de l’État rencontré. Mais on peut aussi relever que cette dynamique d’ajustement
+accentue les écarts entre ceux qui sont investis pleinement dans le fonctionnement
+projet et ceux qui en sont plus éloignés~; les propriétaires en sont un bon
+exemple. Même pour
+des \textquote{propriétaires professionnels}, l’appréhension  de certaines
+subtilités est difficile. Tel est le cas de ce propriétaire qui avaient bien
+consciences que seules les parcelles de feuillues étaient éligibles sans pour
+autant savoir qu'ils devaient être sur pied(voir figure~\ref{fig:ineligible})~:
+
+\blockquote[propriétaire 6]{Le bois énergie, on avait
+  quand même un lot avec un ami, un lot assez important. Alors comme par hasard
+  on avait coupé les bois mais ils étaient encore sur les lieux. Attention je
+  vous dis bien les choses, le bois était coupé mais ils étaient encore sur les
+  lieux, et ben il nous l'a refusé parce qu'ils étaient coupés! Voilà!}
+
+\subsection{Enjeux de coordination, entre tensions et innovations}
+
+\subsubsection{Redéfinition des rôles entre acteurs ou redéfinition des compétences?}
+
+L’arrivée de nouveaux acteurs, de nouveaux référentiels et, plus largement, la
+mise en place de chaînes d’approvisionnement propres au BE soulèvent des enjeux
+de coordination entre les différents protagonistes de cette filière émergente
+\citep{tabourdeau2014_ref117,BEbanosDehez_ref78}. La nécessité affichée de mobiliser
+du \textquote{bois supplémentaire} pour accompagner le développement des chaufferies
+tout en préservant la matière première du tissu industriel existant accentue les
+défis posés. Cette demande croissante contraint en effet certains opérateurs
+à faire plus de prospection et de
+démarchage que ce que leur mission nécessite en théorie~: \blockquote[opérateur 2]
+{Je ne vais pas dire que c’est un combat perpétuel mais c’est tout
+le temps être à la recherche de nouveaux propriétaires}. Or, pour
+cet opérateur, les difficultés rencontrées nécessitent d’améliorer les
+complémentarités entre les différents maillons de la chaîne~: \blockquote{On pourrait
+mobiliser plus de bois s’il y avait des échanges plus constructifs entre les
+opérateurs, entre le public et le privé [\ldots] plus de coordination entre personnes
+d’une même filière}. La question qu’on peut se poser est la
+suivante : est-ce que le renforcement de la dynamique collective passe par la
+mise en place de dispositifs facilitants les échanges ou est ce qu’il implique
+une redéfinition de la mission des acteurs?\\
+
+Ces enjeux de coordination sont au cœur même des \glspl{ami} puisque
+\textquote[\citealp{instructionTech_ref109}]{l’objectif recherché par l’ADEME
+est d’accompagner le financement d’actions
+collaboratives entre les acteurs de la chaîne de mobilisation du bois
+complémentaires aux dispositifs existants}. Dans cette logique d’innovation, le
+développement du numérique et des nouvelles technologies de l’information offre
+des opportunités que les porteurs de FOREDAVENIR ont saisi. Des
+spécialistes du secteur de l’information géographique, comme l’IGN et le GIP
+ATGeRI, ont donc été sollicités pour développer une plateforme informatique qui
+facilite la circulation de l’information et les échanges entre partenaires du
+projet. Cet outil ne vise pas seulement à compiler des données mais constitue aussi
+une interface au c\oe{}ur de la dynamique collective. Elle accompagne les acteurs
+tout au long de la démarche. Les diagnostics sylvicoles réalisés par le CRPF ou
+le SIPHEM auprès des propriétaires sont donc déposés sur la plateforme. Selon
+le choix fait par le propriétaire, ce diagnostic peut être ouvert à un ou
+plusieurs des opérateurs partenaires, voir à l’ensemble d’entre eux. Autrement
+dit, la plateforme peut aider les opérateurs privés à identifier plus facilement
+\textquote{là, où il y a du bois exploitable}~; ce qui correspond à une des attentes des
+acteurs rencontrés lors de l’enquête. On peut néanmoins noter que ce partage de
+l’information, même s’il est contrôlé, peut aussi aviver des concurrences entre
+prestataires et contribuer à redistribuer les cartes sur un territoire donné.
+Également utilisé pour déposer et instruire les dossiers, la plateforme peut
+aussi faciliter les échanges entre les opérateurs et les services de l’État.
+Elle permet à ces derniers d’avoir connaissance quasiment en temps réel de
+l’avancement des dossiers, d’accéder rapidement à un certain nombre
+d’informations et donc, \textit{in fine}, d’assurer un meilleur suivi du projet. Si de
+rares acteurs ont pu s’interroger sur les risques que faisaient peser un tel
+contrôle pour la propriété privée, le fait est que les possibilités offertes par
+la plateforme développées par le GIP ATGeRI ont conduit l’ADEME à préconiser son
+utilisation au niveau national pour l’ensemble des projets \textquote{Dynamics Bois}.\\ 
+
+Parallèlement, le bois-énergie et les différents dispositifs qui accompagnent
+son développement contribuent à faire évoluer la compétence des opérateurs.
+Dans le sillage de la tempête Martin (1999), certains opérateurs ont ainsi perçu
+l’essor du bois-énergie comme une opportunité de se diversifier. Mais il a fallu
+s’équiper et trouver de nouveaux process pour s’adapter aux exigences de ce
+marché émergent~: 
+\blockquote[opérateur 1]{Des essais on en a fait
+  pendant 10 ans [\dots] On a senti un premier développement de chaudières. Là
+  on a commencé à se dire qu’il fallait qu’on réagisse différemment, qu’on pense
+  différemment le process et le bois qu’on va livrer. Pour la plupart, les
+  petites chaudières, des collectivités qui avaient des besoin en qualité
+  complètement différentes que ce qu’on faisait pour Facture. La qualité n’est
+  pas la même, on a commencé à travaillé d’une manière un peu plus raisonnée
+  pour adapter notre produit aux exigences des petites chaudières.}
+
+
+Un programme tel que FOREDAVENIR contribue à cette logique d’équipement et de
+monter en compétence. Pour pouvoir bénéficier d’aides à l’investissement matériels
+ou être compétitifs par rapport aux autres prestataires, les opérateurs de
+FOREDAVENIR doivent pouvoir démarcher les propriétaires, assurer le rôle de mandataire,
+acquérir une certification ou encore diversifier leurs travaux. FOREDAVENIR
+participe donc d’un processus de \textquote{professionnalisation}
+avec un élargissement des compétences qui peut conduire à une certaine forme
+d’autonomisation, c’est-à-dire à une volonté de conquérir des marchés de manière
+autonome. Tel est le cas de cet opérateur, qui s’était plutôt spécialisé dans
+les travaux de nettoyage après la tempête Martin mais qui souhaite désormais
+s’investir aussi dans le reboisement pour pouvoir répondre aux nouvelles attentes
+(FOREDAVENIR, projets de reboisements compensateurs….)~:
+\blockquote{A l’époque, on travaillait avec **** pour faire des essais d’exploitation, de
+rendement et ainsi de suite [\ldots] on fait du reboisement pour pouvoir répondre
+aux AMIs [\ldots] on fait la préparation de sol. On travaille en partenariat avec
+Planfor pour les plantations.}
+
+
+Avec cet extrait, on voit que la redéfinition des compétences implique aussi
+une redéfinition des relations entre acteurs de la gestion forestière. Cet
+exemple illustre davantage
+une logique de concurrence que de complémentarité. Il y a là une forme de
+paradoxe~: un programme tel que FOREDAVENIR vise à améliorer les synergies
+collectives au sein de la filière BE tout en favorisant d’une certaine manière
+la mise en concurrences des opérateurs. \textit{A contrario}, le cadre réglementaire et
+le respect des règles de concurrences peut aussi être un frein à l’évolution de
+certaines compétences. Au cours de l’enquête, plusieurs opérateurs privés ont
+conditionné l’accroissement de la mobilisation des bois à un démarchage plus
+\textquote{pro-actif} des propriétaires. Or, par exemple, si les techniciens du CRPF
+conseillent les propriétaires et peuvent leur donner une liste d’opérateurs,
+ils nous ont aussi précisé qu’ils ne pouvaient pas orienter le choix de ce
+dernier vers tel ou tel prestataire au risque de contrevenir à leur mission
+d’ingénierie publique.
+
+\subsubsection{L'importance des processus de capitalisation}
+
+En devenant un~\textquote[administration publique 2]{instrument structurant des
+projets~\textquote{Dynamic Bois}}, la plateforme développée par le GIP ATGeRI
+démontre l'importance des processus de capitalisation. Au-delà de son rôle de
+compilation de l'information, l'outil est en effet, lui-même, le fruit d'un
+processus de d'expérimentation amorcé bien avant FOREDAVENIR~: \blockquote[administration
+publique 1]{Le GIP ATGeRI, c’est une plateforme qui a été développé localement,
+on l’avait pour le suivi de la reconstitution de Klaus.}
+
+Tout en s'exprimant chez les services de l'État au travers de la plateforme, la
+capitalisation s'exprime aussi chez le~\gls{siphem}\index{SIPHEM}. Dès 2004, le syndicat
+entreprend une réflexion sur l'installation et l'approvisionnement des chaufferies du territoire~;
+il y associe les propriétaires forestiers, les énergéticiens, les
+collectivités et les ETF \citep{BEbanosDehez_ref78}. La continuité de cette réflexion a été assurée en
+2011 par un \gls{pdm}\index{PDM} porté conjointement par le \indexp{CRPF}
+et le SIPHEM. Cette ambition d'assurer une continuité
+de l’information, de consolider les partenariats existants et de développer
+un savoir-faire forestier s’incarne également dans la volonté de maintenir, grâce
+aux financements de l’ADEME, un technicien forestier au sein du SIPHEM. Cette
+dynamique se traduit par une meilleure connaissance du territoire et des
+propriétaires, donc une meilleure relation entre porteurs de projets et
+forestiers. Il en découle
+et une meilleure réception de FOREDAVENIR par les propriétaires~:
+\blockquote[propriétaire 2]{il connaît la propriété~[\ldots]~il arrive avec une
+carte qui rassure~[\ldots]~je trouve que c'est bien, et puis on le connaît ici.
+On a eu affaire a lui les uns et les autres, parce que si on a des travaux
+forestiers chez soi, on s'est posé des questions, c'est un interlocuteur que
+l'on connaît localement}
+
+
+En résumé, FOREDAVENIR ne crée donc pas forcément de nouveaux outils mais
+contribue à assembler et à étendre la portée des expériences déjà amorcées. Tout
+en s'appuyant surde l'information capitalisée, FOREDAVENIR au processus de
+capitalisation qui
+pourra faciliter l'implémentation de futurs programmes en Gironde.
+
+\subsection{Assurer la rentabilité des chaufferies, rémunérer le producteur~: un
+équilibre économique difficile à trouver}
+
+En contribuant à diversifier les prestataires sur le territoire et en facilitant
+l'acquisition de compétences, FOREDAVENIR semble favoriser des logiques de
+concurrence économique. Les partenaires du projet en sont
+conscients. Un employé d'une collectivité à même rapporté au sujet d'un
+opérateur en situation de monopole: de nouveaux opérateurs vont venir
+\textquote[administration publique 3]{lui brouter la laine
+sur le dos}. Un employé de l'opérateur en question affirme ne pas craindre cette
+concurrence car d'une part, l'opérateur s'est équipé pour garder une longueur
+d'avance sur de potentiels nouveaux concurrents~; d'autre part, l'interconnaissance
+et sa connaissance du territoire le protégerait~: \blockquote[opérateur 3]{On
+travaille tous ensemble, on se connaît tous, faut pas oublier.
+Mais on ne se marche pas dessus. M.*** marque son territoire. Ce
+n'est pas tout à fait ça mais}
+A l'inverse, la venue d'une concurrence
+économique est bien perçue par les~\textquote{forestiers en devenir}. Ils espèrent
+qu'elle leur permettra de faire monter les prix du bois et de diversifier leurs
+sources d'information.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{chaineDeValeur.pdf}
+  \caption{Chaîne de valeur potentielle parmi les maillons de la filière bois-énergie}\label{fig:CDV}
+  \floatfoot{Sources~: \citep{foretEntreprise233_ref107}}
+\end{figure}
+
+L'enjeu du prix d'achat des bois au propriétaire constitue une problématique à
+laquelle le CRPF tente de répondre. Dans cette optique
+le CRPF a produit un~\textquote{Mémento Aquitain du bois-énergie}
+dans lequel il aborde la question de la maîtrise de la chaîne de valeur (voir
+figure~\ref{fig:CDV}). Cependant, FOREDAVENIR n'impose pas de
+prix chaudière. Le programme n'impose pas aux chaudières un prix minimum
+susceptible de rémunérer l'ensemble des acteurs de la filière. L'\indexp{ADEME},
+en tant que financeur d'un projet qui vise à sécuriser l'approvisionnement des
+chaufferies, ne peut pas imposer un prix de la plaquette au risque de
+déstabiliser l'équilibre économique des chaudières. Il en va de même pour le
+\indexp{SIPHEM} si il veut remplir ces objectifs de \indexp{TEPOS}. La
+transition énergétique ne peut s'effectuer que si le combustible bois reste
+rentable face à ces concurrents, tel que le gaz ou l'électricité.
+À ces contraintes du marché de l’énergie, les opérateurs forestiers rencontrés
+ajoutent leurs propres charges (coûts de mobilisation, de transformation, de
+transport du BE, etc.) pour expliquer leurs faibles marges de manœuvres vis-vis des
+propriétaires~: \textquote[opérateur 2]{au prix de la chaudière. Et puis, faut que je me paye,
+j'ai de comptes à rendre}. L’une des options pour réduire les coûts de production est de
+privilégier le flux tendu. Il permet de limiter les ruptures de charge lié au
+stockage et aux intermédiaires de production du BE. Le flux tendu est pertinent
+pour approvisionner les grosses chaufferies industrielles qui consomment beaucoup
+de BE et qui n’ont pas besoin d’un combustible de grande qualité. Les petites
+chaufferies ont besoin d’un produit de meilleure qualité (taux d’humidité
+moindre et granulométrie plus homogène). Elles justifient le recours à des
+plateformes de stockage et des équipements de criblage. Elles permettent donc
+aux opérateurs de créer de la valeur ajoutée. Elles permettraient
+donc, in fine, de mieux valoriser le combustible bois. Cependant, elles
+consomment de trop petites quantités pour créer un effet d’entraînement. Dans
+ce contexte où le modèle économique du BE reste difficile à trouver, les
+chaufferies de moyennes puissances (ex : les chaufferies collectives urbaines
+type hôpital ou écoquartier) offrent donc ,en théorie, le rapport qualité /
+quantité le plus intéressant pour les opérateurs. Même si ces chaudières
+nécessitent \textit{a priori} une certaine qualité de combustible pour limiter les
+risques de dysfonctionnement, leurs gestionnaires privilégient souvent des
+combustibles à bas prix. Ce choix s’explique par des contraintes économiques
+mais aussi par le constat d’un déficit d’homogénéité des approvisionnements
+proposés \citep{BEbanosDehez_ref78}. Conscient de cette situation et de leurs
+faibles marges de man\oe{}uvre pour intervenir dans une logique de marché, les
+animateurs de FOREDAVENIR ont décidé de promouvoir le label \gls{cbq+}\index{CBQ+}. Créée en
+Rhône-Alpes et portée par une association basée en Poitou-Charentes, cette
+certification vise à garantir aux gestionnaires des chaufferies un combustible
+calibré aux qualités adéquates et à pérenniser cet approvisionnement sur le long
+terme. Pour le fournisseur, cette relation commerciale offre une visibilité et
+l’opportunité d’une meilleure rémunération. Autrement dit, en cherchant à
+développer ce label au sein de FOREDAVENIR, l’ADEME et les animateurs tentent de
+reprendre en main l’enjeu de la contractualisation, d’influer sur les prix et,
+\textit{in fine}, d’améliorer l’équilibre économique de la filière BE. Si
+l’implémentation de cette certification et ses effets restent incertains,
+l’expérimentation illustre une nouvelle fois l’esprit même des \glspl{ami},
+entre principes et ajustements.
+
+\chapter{Discussion et conclusion}
+
+L'étude avait pour objectif de comprendre comment le programme \indexp{FOREDAVENIR}
+pouvait \textquote{sensibiliser les propriétaires forestiers à l'utilité de la gestion
+sylvicole}. Pour cela, nous avons observé le comportement des propriétaires à
+une double échelle. D'une part, les propriétaires ont été analysés à l'échelle
+micro~: individu par individu~; d'autre part, à l'échelle méso~: comment ces
+derniers s'insèrent dans une filière composée d'acteurs et d'opérateurs. 
+Les travaux décrits dans ce rapport ont répondu favorablement à l'hypothèse
+qui avait été formulée sous forme de problématique~: Au-delà des objectifs
+affichés, comment FOREDAVENIR va-t-il modifier les pratiques et les cadres de la
+gestion forestière en Est-Gironde?
+
+L'analyse micro a montré que le programme induit une double dynamique chez les
+propriétaires. D'une part, des propriétaires se professionnalisent~; d'autre
+part, des propriétaires cherchent à distendre leurs liens avec la forêt. L'analyse
+méso, qui replace les propriétaires dans un contexte, a montré comment le
+développement du BE et l'utilisation de nouveaux outils induisent une évolution
+des relations entre acteurs et de leurs rôles. On assiste donc à l'émergence
+d'un nouveau débouché sur lequel d'une part, les propriétaires tentent d'en
+obtenir le meilleur prix~; d'autre part, les  opérateurs tentent de se
+positionner.\\
+
+L'article de \citet{brahic2017_ref114} conforte les résulats mis en avant par
+l'enquête.
+Selon eux, \textquote{les acteurs les plus à même de s'intégrer dans la filière
+BE sont ceux qui disposent déjà d'un savoir-faire et d'une expérience en matière
+de gestion forestière et de commercialisation des bois}. Cette affirmation étaye
+les résultats observés au travers de la typologie. Dans les 2 cas, il existe un
+fort contraste entre les \textquote{forestiers professionnels} et les
+\textquote{propriétaires distants}. Vis à vis de l'article de \citet{brahic2017_ref114},
+la typologie construite brosse le portrait de catégories intermédiaires. Le
+travail présenté ici est donc complémentaire dans le sens où, tout en confirmant
+les résultats de \citet{brahic2017_ref114}, il montre comment les individus
+dans les catégories intermédiaires peuvent évoluer.
+Cependant, ces évolutions sont à titre indicatif et n'ont pas valeur de prédictions.
+Elles ne permettent pas de prédire
+combien de propriétaires vont suivre ces dynamiques ni si leur évolution va
+être rapide ou lente.
+C'est pourquoi il sera intéressant de prolonger la démarche exploratoire par une
+une enquête quantitative. L'enquête quantitative qui sera mise en place
+en 2018 par le centre de recherche permettra de confirmer ou d'infirmer la
+double dynamique observée. Elle permettra aussi de catégoriser les leviers et
+les freins.
+Tout en étant un élément qui entraîne des évolutions du comportement des propriétaires
+et des opérateurs, FOREDAVENIR ne peut pas être considéré comme l'unique élément
+déclencheur. Il est certes
+un programme précurseur, mais n'est
+toutefois que l'expression d'une évolution à l'échelle nationale des politiques
+de récoltes de bois~\citep{sergent2014_ref110}. FOREDAVENIR ne fait donc
+qu'accentuer les évolutions initiées par le développement du bois-énergie. Mon
+stage a mis en évidence que la transition énergétique provoque une évolution des
+relations entre acteurs et de leurs rôles sur 3 niveaux~: une évolution des
+rôles et des missions des opérateurs de la filière, l'acquisition d'une capacité à peser
+dans le domaine de la forêt chez des acteurs participant à la transition
+énergétique et l'évolution du statut des propriétaires forestiers.\\
+
+Le développement du BE et la transition énergétique constituent un nouveau marché.
+En conséquence, les opérateurs investissent et s'équipent pour y conquérir des
+parts. A ce titre, certains adhèrent à la certification CBQ+ pour se démarquer
+de leurs concurrents alors que d'autres prennent part  à des études de faisabilité
+sur des projets de construction de chaufferies.
+La participation a des activités connexes aux métiers de la forêt impose aux
+opérateurs un basculement de leur centre de gravité. Autrement dit, l'opérateur
+ne se cantonne plus uniquement
+au domaine de la forêt mais intègre des considérations énergétiques. En résumé,
+ces 2 exemples montrent comment des exploitants forestiers acquièrent des
+connaissances en énergétiques. L'étude laisse donc supposer que le développement
+d'un nouveau marché, dans ce cas un nouveau débouché pour le bois, modifie en
+profondeur le tissu économique ou industriel d'un territoire en redéfinissant le
+rôle des opérateurs. L'impact du développement d'un nouveau marché n'est pas
+spécifique au cas étudié~\citep{sergent2014_ref110} ni au secteur forêt-bois
+\citep{castaneda2017_ref111}.
+
+D'une part, comme il a été présenté précédemment, des opérateurs forestiers
+prennent part à la transition énergétique; d'autre part, il est apparu, au cours
+de l'enquête, que des acteurs de la transition énergétique capitalisaient de
+l'information forestière. En capitalisant de l'information, grâce à la plateforme
+ou grâce à une participation aux programmes successifs (\indexp{PDM} SIPHEM et
+FOREDAVENIR), respectivement chez l'ADEME et chez le SIPHEM, octroie à ces acteurs
+la capacité d'influencer l'action et les interactions entre opérateurs. D'une
+manière plus générale, le gain d'une compétence forestière chez des acteurs de
+la transition énergétique peut potentiellement faire évoluer le paradigme qui a
+guidé l'action forestière jusqu'à aujourd'hui~\citep{sergent2014_ref110}. En
+deçà de ces considérations, le SIPHEM s'est avéré être un excellent relais pour
+implémenter FOREDAVENIR. Il semble que les propriétaires du SIPHEM aient été
+plus réceptifs à l'esprit des AMIs tel que présenté dans~\citet{instructionTech_ref109}.
+L'intérêt des collectivités dans les programmes d'incitation à la gestion forestière
+a aussi été observé aux Etats-Unis~\citep{rouleau2016_ref100}.
+
+En considérant les propriétaires comme le c\oe{}ur du programme, l'AMI pourrait
+avoir comme objectif de donner une \textquote{culture forestière} aux propriétaires
+en homogénéisant leurs pratiques sylvicoles. Cependant, \indexp{FOREDAVENIR}
+n'utilise pas d'arsenal juridique pour~\textquote[\citealp{instructionTech_ref109}]
+{sensibiliser les propriétaires forestiers à l'utilité de la gestion sylvicole}.
+Autrement dit, il ne cherche pas à contraindre les propriétaires à appliquer un
+seul modèle de gestion forestière. Le programme ne cherche donc pas à homogénéiser
+les pratiques forestières. A la place, il propose aux propriétaires des éléments
+(balivage, reboisement, régénération) qui permettront à chacun de participer à
+l'objectif collectif du programme~; tout cela à la hauteur de leurs moyens. Sinon,
+la 3$^{e}$ hypothèse est que le programme cherche à guider les propriétaires et
+à les insérer dans une filière. Les propriétaires seraient encadrés par des outils
+comme la plateforme. A l'extrême, un encadrement trop définis, grâce aux nouvelles
+technologies, pourrait poser la question du respect de la propriété privée. Si
+les objectifs de mobilisation ne pourraient pas être atteints par manque de
+propriétaires mobilisés; l'IGN a proposé de repérer les peuplements privés pouvant
+entrer dans le contexte de FOREDAVENIR. Avec cette information, le CRPF serait
+en mesure de démarcher les propriétaires. Les propriétaires pourraient donc se
+sentir dépossédés de leur droit de propriété privée puisque les services de
+l’État connaîtraient \textit{a priori} les peuplements.\\
+
+Bien que nous ayons réussi à appréhender le programme FOREDAVENIR dans son ensemble,
+il n'a pas été possible de suivre l'intégralité des ramifications des volets
+\textquote{investissement matériel et immatériel dans la filière} et animation
+puisque nous nous sommes concentrés sur les propriétaires. Au travers du sujet
+d'étude, nous avons donc été amené à nous concentrer sur le volet~\textquote{investissement
+pour l'amélioration des peuplements forestiers}. Cependant, l'objet d'étude a
+permis d'avoir un aperçu des enjeux de l'animation et de l'impact de la
+mise en place d'un nouvel outil lié au volet~\textquote{investissement matériel
+et immatériel}. Afin d'avoir une vision plus complète de FOREDAVENIR et des
+dynamiques en cours, une ou des études pourraient analyser, en plus du volet
+animation, la plateforme développée par le GIP ATGeRI. Cet outil, en tant que
+n\oe{}ud d'échanges entre les acteurs, offrirait l'opportunité de mieux
+comprendre les changements auxquels FOREDAVENIR contribue. L'analyse des
+résultats et un agent des services de l'État suggèrent que les effets de FOREDAVENIR
+vont au-delà des objectifs quantitatifs affichés. Ces travaux complémentaires
+contribueraient donc à l'élaboration d'un dispositif d'évaluation.
+
+
+\printbibliography[heading=bibliog]
+
+\appendix
+
+\chapter{FOREDAVENIR}\index{FOREDAVENIR}\label{App:appxA}
+\pagenumbering{roman}
+\newgeometry{top=-10mm,bottom=0mm,left=0mm,right=0mm}
+\begin{figure}
+  \centering
+  \includegraphics[scale=1]{frda.pdf}
+\end{figure}
+\restoregeometry
+
+%\chapter{Synthèse des enjeux et problématiques sur le territoire du Libournais}\index{Libournais}\label{App:appxB}
+%\input{inputLibournais}
+
+%\chapter{Synthèse des enjeux et problématiques sur le territoire du SIPHEM}\index{SIPHEM}\label{App:appxC}
+%\input{inputSiphem}
+
+\chapter{Grille d'entretiens des propriétaires}
+\input{inputGrilleProprietaires}\label{App:appxB}
+
+\chapter{Grille d'entretiens des acteurs économiques}
+\input{inputGrilleActeursEco}\label{App:appxC}
+
+\clearpage
+\addcontentsline{toc}{chapter}{\protect\numberline{}Index}
+\printindex
+
+\newpage
+\thispagestyle{empty}
+~
+\newpage
+
+\newgeometry{top=0mm,bottom=0mm,left=-10mm,right=10mm}
+\begin{figure}
+  \centering
+  \includegraphics[scale=1]{abstractIrstea.pdf}
+\end{figure}
+\restoregeometry
+
+\end{document}
